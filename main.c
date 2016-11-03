@@ -62,7 +62,7 @@ int main(int argc, char *argv[])
 {
 	int i = 0;
 	int paranoid = 0;
-	char idps_buffer[32];
+	char idps_buffer[16];
 	unsigned char idps_text_char_tmp[1];
 	unsigned char idps_text_char_1st[1];
 	unsigned char idps_text_char_2nd[1];
@@ -76,7 +76,7 @@ int main(int argc, char *argv[])
 
 	psvDebugScreenInit();
 	psvDebugScreenClear(0);
-	printf("PSV IDPS Dumper v%i.%i by Yoti\nbased on VitaCID by Major_Tom\n\n", VER_MAJOR, VER_MINOR);
+	printf("PSV IDPS Dumper v%i.%if by Yoti\nbased on VitaCID by Major_Tom\n\n", VER_MAJOR, VER_MINOR);
 
 	_vshSblAimgrGetConsoleId(idps_buffer);
 
@@ -259,15 +259,15 @@ int main(int argc, char *argv[])
 
 		// 1st half of byte
 		if (idps_text_char_1st[1] < 0xA) // digit
-			sprintf(idps_text_buffer, "%s%02X", idps_text_buffer, idps_text_char_1st[1]+0x30);
+			sprintf(idps_text_buffer, "%s%c", idps_text_buffer, idps_text_char_1st[1]+0x30);
 		else // char
-			sprintf(idps_text_buffer, "%s%02X", idps_text_buffer, idps_text_char_1st[1]+0x37);
+			sprintf(idps_text_buffer, "%s%c", idps_text_buffer, idps_text_char_1st[1]+0x37);
 
 		// 2nd half of byte
 		if (idps_text_char_2nd[1] < 0xA) // digit
-			sprintf(idps_text_buffer, "%s%02X", idps_text_buffer, idps_text_char_2nd[1]+0x30);
+			sprintf(idps_text_buffer, "%s%c", idps_text_buffer, idps_text_char_2nd[1]+0x30);
 		else // char
-			sprintf(idps_text_buffer, "%s%02X", idps_text_buffer, idps_text_char_2nd[1]+0x37);
+			sprintf(idps_text_buffer, "%s%c", idps_text_buffer, idps_text_char_2nd[1]+0x37);
 	}
 	WriteFile("ux0:data/idps.txt", idps_text_buffer, 32);
 
