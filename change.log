@@ -1,0 +1,23 @@
+v0.1
+- ability to dump idps to file from fixed key
+- rudimentary paranoid mode (hide full idps from screen)
+v0.1f
+- fixed dump-to-file in paranoid mode (won't work before)
+v0.2
+- fixed print-to-screen
+- removed unused libraries
+v0.3
+- changed autoexit to manual (press cross to exit)
+- added dumping to plain text file
+v0.3f
+- added list of idstorage keys & offsets
+- disabled smart module loader for compatibility reasons
+- completed paranoid mode (hide only second half of idps)
+v0.4
+- rudimentary psp/psv ident tool
+v0.5
+- near completed psp/psv/tv ident tool (used in psvident by freakler)
+v0.6
+- initial release for vita
+- updated codebase for psp
+- now colored!
