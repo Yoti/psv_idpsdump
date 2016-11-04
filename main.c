@@ -245,7 +245,7 @@ int main(int argc, char *argv[])
 	psvDebugScreenSetFgColor(0xFFFFFFFF);
 	printf("\n\n");
 
-	printf(" https://github.com/Yoti/psv_idpsdump/\n");
+	printf(" https://github.com/yoti/psv_idpsdump/\n");
 
 	// binary
 	WriteFile("ux0:data/idps.bin", idps_buffer, 16);
