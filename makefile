@@ -1,7 +1,7 @@
-TITLE_ID  = YPID00001
-TITLE_SFO = PSV IDPS Dumper v0.6f
-TARGET    = PSV_IDPS_Dumper_v0.6f
-OBJS      = main.o graphics.o font.o
+TITLE_ID = YPID00001
+TITLE    = PSV IDPS Dumper v0.6f
+TARGET   = PSV_IDPS_Dumper_v0.6f
+OBJS     = main.o graphics.o font.o
 
 LIBS = -lSceKernel_stub -lSceVshBridge_stub -lSceDisplay_stub -lSceCtrl_stub
 
@@ -13,10 +13,15 @@ ASFLAGS = $(CFLAGS)
 all: $(TARGET).vpk
 
 %.vpk: eboot.bin
-	vita-mksfoex -d PARENTAL_LEVEL=1 -s APP_VER=00.60 -s TITLE_ID=$(TITLE_ID) "$(TITLE_SFO)" param.sfo
+	vita-mksfoex -d PARENTAL_LEVEL=1 -s APP_VER=00.60 -s TITLE_ID=$(TITLE_ID) "$(TITLE)" param.sfo
 	vita-pack-vpk -s param.sfo -b eboot.bin \
 					--add change.log=sce_sys/manual/change.log \
 					--add thanks.txt=sce_sys/manual/thanks.txt \
+					--add livearea/icon0.png=sce_sys/icon0.png \
+					--add livearea/pic0.png=sce_sys/pic0.png \
+					--add livearea/bg0.png=sce_sys/livearea/contents/bg0.png \
+					--add livearea/startup.png=sce_sys/livearea/contents/startup.png \
+					--add livearea/template.xml=sce_sys/livearea/contents/template.xml \
 					$@
 
 eboot.bin: $(TARGET).velf
