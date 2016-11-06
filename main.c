@@ -8,7 +8,7 @@
 #include "graphics.h"
 
 #define VER_MAJOR 0
-#define VER_MINOR 6
+#define VER_MINOR 7
 
 #define printf psvDebugScreenPrintf
 
@@ -76,30 +76,30 @@ int main(int argc, char *argv[])
 
 	psvDebugScreenInit();
 	psvDebugScreenClear(0);
-	printf("PSV IDPS Dumper v%i.%if by Yoti\nbased on VitaCID by Major_Tom\n\n", VER_MAJOR, VER_MINOR);
+	printf("PSV IDPS Dumper v%i.%i by Yoti\nbased on VitaCID by Major_Tom\n\n", VER_MAJOR, VER_MINOR);
 
 	_vshSblAimgrGetConsoleId(idps_buffer);
 
 	printf(" Your IDPS is: ");
 	if (paranoid == 1)
 	{
-		for (i=0; i<0x08; i++)
+		for (i=0; i<0x08; i++) // 0x0A???
 		{
 			if (i == 0x04)
-				psvDebugScreenSetFgColor(0xFF0000FF);
+				psvDebugScreenSetFgColor(0xFF0000FF); // red
 			else if (i == 0x06)
-				psvDebugScreenSetFgColor(0xFF0000FF);
+				psvDebugScreenSetFgColor(0xFF0000FF); // red
 			else if (i == 0x07)
-				psvDebugScreenSetFgColor(0xFF00FF00);
+				psvDebugScreenSetFgColor(0xFF00FF00); // green
 			else if (i == 0x05)
-				psvDebugScreenSetFgColor(0xFFFF0000);
+				psvDebugScreenSetFgColor(0xFFFF0000); // blue
 			else
-				psvDebugScreenSetFgColor(0xFFFFFFFF);
+				psvDebugScreenSetFgColor(0xFFFFFFFF); // white
 			printf("%02X", (u8)idps_buffer[i]);
 		}
-		for (i=0; i<0x08; i++)
+		for (i=0; i<0x08; i++) // 0x06???
 		{
-			psvDebugScreenSetFgColor(0xFFFFFFFF);
+			psvDebugScreenSetFgColor(0xFFFFFFFF); // white
 			printf("XX");
 		}
 	}
@@ -108,22 +108,22 @@ int main(int argc, char *argv[])
 		for (i=0; i<0x10; i++)
 		{
 			if (i == 0x04)
-				psvDebugScreenSetFgColor(0xFF0000FF);
+				psvDebugScreenSetFgColor(0xFF0000FF); // red
 			else if (i == 0x06)
-				psvDebugScreenSetFgColor(0xFF0000FF);
+				psvDebugScreenSetFgColor(0xFF0000FF); // red
 			else if (i == 0x07)
-				psvDebugScreenSetFgColor(0xFF00FF00);
+				psvDebugScreenSetFgColor(0xFF00FF00); // green
 			else if (i == 0x05)
-				psvDebugScreenSetFgColor(0xFFFF0000);
+				psvDebugScreenSetFgColor(0xFFFF0000); // blue
 			else
-				psvDebugScreenSetFgColor(0xFFFFFFFF);
+				psvDebugScreenSetFgColor(0xFFFFFFFF); // white
 			printf("%02X", (u8)idps_buffer[i]);
 		}
 	}
 	printf("\n\n");
 
 	printf(" It seems that you are using ");
-	psvDebugScreenSetFgColor(0xFF0000FF);
+	psvDebugScreenSetFgColor(0xFF0000FF); // red
 	if (idps_buffer[0x04] == 0x00)
 		printf("PlayStation Portable");
 	else if (idps_buffer[0x04] == 0x01) // psv, vtv/pstv
@@ -137,11 +137,11 @@ int main(int argc, char *argv[])
 	}
 	else
 		printf("Unknown PS 0x%02X", idps_buffer[0x04]);
-	psvDebugScreenSetFgColor(0xFFFFFFFF);
+	psvDebugScreenSetFgColor(0xFFFFFFFF); // white
 	printf("\n");
 
 	printf(" Your motherboard is ");
-	psvDebugScreenSetFgColor(0xFF00FF00);
+	psvDebugScreenSetFgColor(0xFF00FF00); // green
 	if (idps_buffer[0x06] == 0x00) // portable
 	{
 		switch(idps_buffer[0x07])
@@ -156,7 +156,7 @@ int main(int argc, char *argv[])
 				printf("TA-085/088 (PSP-2000)");
 				break;
 			case 0x04:
-				printf("TA-090v2/092 (PSP-3000)");
+				printf("TA-090/092 (PSP-3000)");
 				break;
 			case 0x05:
 				printf("TA-091 (PSP-N1000)");
@@ -168,7 +168,7 @@ int main(int argc, char *argv[])
 			//	printf("???");
 			//	break;
 			case 0x08:
-				printf("TA-095/095v2 (PSP-3000)");
+				printf("TA-095 (PSP-3000)");
 				break;
 			case 0x09:
 				printf("TA-096/097 (PSP-E1000)");
@@ -198,11 +198,11 @@ int main(int argc, char *argv[])
 	}
 	else
 		printf("Unknown type 0x%02X", idps_buffer[0x06]);
-	psvDebugScreenSetFgColor(0xFFFFFFFF);
+	psvDebugScreenSetFgColor(0xFFFFFFFF); // white
 	printf("\n");
 
 	printf(" And your region is ");
-	psvDebugScreenSetFgColor(0xFFFF0000);
+	psvDebugScreenSetFgColor(0xFFFF0000); // blue
 	switch(idps_buffer[0x05])
 	{
 		case 0x03:
@@ -242,13 +242,16 @@ int main(int argc, char *argv[])
 			printf("Unknown region 0x%02X", idps_buffer[0x05]);
 			break;
 	}
-	psvDebugScreenSetFgColor(0xFFFFFFFF);
+	psvDebugScreenSetFgColor(0xFFFFFFFF); // white
 	printf("\n\n");
 
-	printf(" https://github.com/yoti/psv_idpsdump/\n");
-
 	// binary
-	WriteFile("ux0:data/idps.bin", idps_buffer, 16);
+	printf(" Saving as ux0:data/idps.bin... ");
+	if (WriteFile("ux0:data/idps.bin", idps_buffer, 16) > 0)
+		printf("OK");
+	else
+		printf("NG");
+	printf("\n");
 
 	// text
 	for (i=0; i<0x10; i++)
@@ -269,7 +272,14 @@ int main(int argc, char *argv[])
 		else // char
 			sprintf(idps_text_buffer, "%s%c", idps_text_buffer, idps_text_char_2nd[1]+0x37);
 	}
-	WriteFile("ux0:data/idps.txt", idps_text_buffer, 32);
+	printf(" Saving as ux0:data/idps.txt... ");
+	if (WriteFile("ux0:data/idps.txt", idps_text_buffer, 32) > 0)
+		printf("OK");
+	else
+		printf("NG");
+	printf("\n\n");
+
+	printf(" https://github.com/yoti/psv_idpsdump/\n");
 
 	ExitCross("\nDone");
 	return 0;
