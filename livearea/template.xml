@@ -10,7 +10,7 @@
 
 	<frame id="frame3">
 		<liveitem>
-			<target>https://github.com/Yoti/psv_idpsdump</target>
+			<target>https://github.com/yoti/psv_idpsdump</target>
 			<background y="-25">github.png</background>
 		</liveitem>
 	</frame>
