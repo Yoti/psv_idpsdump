@@ -9,6 +9,7 @@
 
 #define VER_MAJOR 0
 #define VER_MINOR 7
+#define VER_BUILD 'a'
 
 #define printf psvDebugScreenPrintf
 
@@ -76,7 +77,7 @@ int main(int argc, char *argv[])
 
 	psvDebugScreenInit();
 	psvDebugScreenClear(0);
-	printf("PSV IDPS Dumper v%i.%ia by Yoti\nbased on VitaCID by Major_Tom\n\n", VER_MAJOR, VER_MINOR);
+	printf("PSV IDPS Dumper v%i.%i%c by Yoti\nbased on VitaCID by Major_Tom\n\n", VER_MAJOR, VER_MINOR, VER_BUILD);
 
 	_vshSblAimgrGetConsoleId(idps_buffer);
 
@@ -99,8 +100,9 @@ int main(int argc, char *argv[])
 		}
 		for (i=0; i<0x08; i++) // 0x06???
 		{
-			psvDebugScreenSetFgColor(0xFFFFFFFF); // white
+			psvDebugScreenSetFgColor(0xFF777777); // gray
 			printf("XX");
+			psvDebugScreenSetFgColor(0xFFFFFFFF); // white
 		}
 	}
 	else
