@@ -77,7 +77,8 @@ int main(int argc, char *argv[])
 
 	psvDebugScreenInit();
 	psvDebugScreenClear(0);
-	printf("PSV IDPS Dumper v%i.%i%c by Yoti\nbased on VitaCID by Major_Tom\n\n", VER_MAJOR, VER_MINOR, VER_BUILD);
+	printf("PSV IDPS Dumper v%i.%i by Yoti\n\n", VER_MAJOR, VER_MINOR);
+	//printf("PSV IDPS Dumper v%i.%i%c by Yoti\nbased on VitaCID by Major_Tom\n\n", VER_MAJOR, VER_MINOR, VER_BUILD);
 
 	_vshSblAimgrGetConsoleId(idps_buffer);
 
