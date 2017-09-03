@@ -8,8 +8,8 @@
 #include "graphics.h"
 
 #define VER_MAJOR 0
-#define VER_MINOR 7
-#define VER_BUILD ""
+#define VER_MINOR 8
+#define VER_BUILD "a1"
 
 #define VAL_PUBLIC 0x08 // 0x0A
 #define VAL_PRIVATE 0x08 // 0x06
