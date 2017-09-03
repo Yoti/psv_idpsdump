@@ -9,7 +9,10 @@
 
 #define VER_MAJOR 0
 #define VER_MINOR 7
-#define VER_BUILD 'a'
+#define VER_BUILD ""
+
+#define VAL_PUBLIC 0x08 // 0x0A
+#define VAL_PRIVATE 0x08 // 0x06
 
 #define printf psvDebugScreenPrintf
 
@@ -77,29 +80,31 @@ int main(int argc, char *argv[])
 
 	psvDebugScreenInit();
 	psvDebugScreenClear(0);
-	printf("PSV IDPS Dumper v%i.%i by Yoti\n\n", VER_MAJOR, VER_MINOR);
-	//printf("PSV IDPS Dumper v%i.%i%c by Yoti\nbased on VitaCID by Major_Tom\n\n", VER_MAJOR, VER_MINOR, VER_BUILD);
+	printf("PSV IDPS Dumper v%i.%i%s by Yoti\n\n", VER_MAJOR, VER_MINOR, VER_BUILD);
+
+	if (VAL_PUBLIC + VAL_PRIVATE != 0x10)
+		ExitError("Length error 0x%02x", 5, VAL_PUBLIC + VAL_PRIVATE);
 
 	_vshSblAimgrGetConsoleId(idps_buffer);
 
 	printf(" Your IDPS is: ");
+	for (i=0; i<VAL_PUBLIC; i++)
+	{
+		if (i == 0x04)
+			psvDebugScreenSetFgColor(0xFF0000FF); // red
+		else if (i == 0x06)
+			psvDebugScreenSetFgColor(0xFF0000FF); // red
+		else if (i == 0x07)
+			psvDebugScreenSetFgColor(0xFF00FF00); // green
+		else if (i == 0x05)
+			psvDebugScreenSetFgColor(0xFFFF0000); // blue
+		else
+			psvDebugScreenSetFgColor(0xFFFFFFFF); // white
+		printf("%02X", (u8)idps_buffer[i]);
+	}
 	if (paranoid == 1)
 	{
-		for (i=0; i<0x08; i++) // 0x0A???
-		{
-			if (i == 0x04)
-				psvDebugScreenSetFgColor(0xFF0000FF); // red
-			else if (i == 0x06)
-				psvDebugScreenSetFgColor(0xFF0000FF); // red
-			else if (i == 0x07)
-				psvDebugScreenSetFgColor(0xFF00FF00); // green
-			else if (i == 0x05)
-				psvDebugScreenSetFgColor(0xFFFF0000); // blue
-			else
-				psvDebugScreenSetFgColor(0xFFFFFFFF); // white
-			printf("%02X", (u8)idps_buffer[i]);
-		}
-		for (i=0; i<0x08; i++) // 0x06???
+		for (i=0; i<VAL_PRIVATE; i++)
 		{
 			psvDebugScreenSetFgColor(0xFF777777); // gray
 			printf("XX");
@@ -108,19 +113,10 @@ int main(int argc, char *argv[])
 	}
 	else
 	{
-		for (i=0; i<0x10; i++)
+		for (i=0; i<VAL_PRIVATE; i++)
 		{
-			if (i == 0x04)
-				psvDebugScreenSetFgColor(0xFF0000FF); // red
-			else if (i == 0x06)
-				psvDebugScreenSetFgColor(0xFF0000FF); // red
-			else if (i == 0x07)
-				psvDebugScreenSetFgColor(0xFF00FF00); // green
-			else if (i == 0x05)
-				psvDebugScreenSetFgColor(0xFFFF0000); // blue
-			else
-				psvDebugScreenSetFgColor(0xFFFFFFFF); // white
-			printf("%02X", (u8)idps_buffer[i]);
+			psvDebugScreenSetFgColor(0xFFFFFFFF); // white
+			printf("%02X", (u8)idps_buffer[VAL_PUBLIC+i]);
 		}
 	}
 	printf("\n\n");
