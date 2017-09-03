@@ -3,7 +3,7 @@ TITLE    = PSV IDPS Dumper v0.7
 TARGET   = PSV_IDPS_Dumper_v0.7
 OBJS     = main.o graphics.o font.o
 
-LIBS = -lSceKernel_stub -lSceVshBridge_stub -lSceDisplay_stub -lSceCtrl_stub
+LIBS = -lSceLibKernel_stub -lSceVshBridge_stub -lSceDisplay_stub -lSceCtrl_stub
 
 PREFIX  = arm-vita-eabi
 CC      = $(PREFIX)-gcc
