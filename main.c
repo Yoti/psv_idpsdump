@@ -19,6 +19,7 @@
 int _vshSblAimgrGetConsoleId(char CID[32]);
 
 /*
+	Model: Proto, SKU: DEM-3000X, MoBo: IRT-001;
 	Model: FatWF, SKU: PCH-1000, MoBo: IRS-002;
 	Model: Fat3G, SKU: PCH-1100, MoBo: IRS-002;
 	Model: Slim, SKU: PCH-2000, MoBo: USS-1001;
@@ -82,8 +83,9 @@ int main(int argc, char *argv[])
 	psvDebugScreenClear(0);
 	printf("PSV IDPS Dumper v%i.%i%s by Yoti\n\n", VER_MAJOR, VER_MINOR, VER_BUILD);
 
-	if (VAL_PUBLIC + VAL_PRIVATE != 0x10)
-		ExitError("Length error 0x%02x", 5, VAL_PUBLIC + VAL_PRIVATE);
+	#if (VAL_PUBLIC + VAL_PRIVATE != 0x10)
+	#error	IDPS Lenght must be 16 bytes long!
+	#endif
 
 	_vshSblAimgrGetConsoleId(idps_buffer);
 
