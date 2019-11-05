@@ -9,18 +9,18 @@
 
 #define VER_MAJOR 0
 #define VER_MINOR 8
-#define VER_BUILD "a1"
+#define VER_BUILD ""
 
-#define VAL_PUBLIC 0x08 // 0x0A
-#define VAL_PRIVATE 0x08 // 0x06
+#define VAL_PUBLIC 0x0A
+#define VAL_PRIVATE 0x06
 
 #define printf psvDebugScreenPrintf
 
 int _vshSblAimgrGetConsoleId(char CID[32]);
 
 /*
-	Model: Proto, SKU: DEM-3000X, MoBo: IRT-001;
-	Model: FatWF, SKU: PCH-1000, MoBo: IRS-002;
+	Model: Proto, SKU: DEM-3000, MoBo: IRT-001;
+	Model: FatWF, SKU: PCH-1000, MoBo: IRS-002/IRS-1001;
 	Model: Fat3G, SKU: PCH-1100, MoBo: IRS-002;
 	Model: Slim, SKU: PCH-2000, MoBo: USS-1001;
 	Model: TV, SKU: VTE-1000, MoBo: DOL-1001.
@@ -84,7 +84,7 @@ int main(int argc, char *argv[])
 	printf("PSV IDPS Dumper v%i.%i%s by Yoti\n\n", VER_MAJOR, VER_MINOR, VER_BUILD);
 
 	#if (VAL_PUBLIC + VAL_PRIVATE != 0x10)
-	#error	IDPS Lenght must be 16 bytes long!
+	#error IDPS Lenght must be 16 bytes long!
 	#endif
 
 	_vshSblAimgrGetConsoleId(idps_buffer);
@@ -176,6 +176,9 @@ int main(int argc, char *argv[])
 				break;
 			case 0x10:
 				printf("IRS-002 (PCH-1000/1100)");
+				break;
+			case 0x12:
+				printf("IRS-1001 (PCH-1000)");
 				break;
 			case 0x14:
 				printf("USS-1001 (PCH-2000)");
