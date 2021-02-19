@@ -19,11 +19,11 @@
 int _vshSblAimgrGetConsoleId(char CID[32]);
 
 /*
-	Model: Proto, SKU: DEM-3000, MoBo: IRT-001;
+	Model: Proto, SKU: DEM-3000, MoBo: IRT-001/IRT-002;
 	Model: FatWF, SKU: PCH-1000, MoBo: IRS-002/IRS-1001;
-	Model: Fat3G, SKU: PCH-1100, MoBo: IRS-002;
-	Model: Slim, SKU: PCH-2000, MoBo: USS-1001;
-	Model: TV, SKU: VTE-1000, MoBo: DOL-1001.
+	Model: Fat3G, SKU: PCH-1100, MoBo: IRS-002/IRS-1001;
+	Model: Slim, SKU: PCH-2000, MoBo: USS-1001/USS-1002;
+	Model: TV, SKU: VTE-1000, MoBo: DOL-1001/DOL-1002.
 
 	No diff between FatWF and Fat3G.
 	No diff between Vita TV (Asian) and PSTV (Western).
@@ -166,7 +166,7 @@ int main(int argc, char *argv[])
 				printf("TA-093 (PSP-3000)");
 				break;
 			//case 0x07:
-			//	printf("???");
+			//	printf("TA-094 (PSP-N1000)");
 			//	break;
 			case 0x08:
 				printf("TA-095 (PSP-3000)");
@@ -177,11 +177,15 @@ int main(int argc, char *argv[])
 			case 0x10:
 				printf("IRS-002 (PCH-1000/1100)");
 				break;
-			case 0x12:
-				printf("IRS-1001 (PCH-1000)");
+			case 0x11: // 3G?
+			case 0x12: // WF?
+				printf("IRS-1001 (PCH-1000/1100)");
 				break;
 			case 0x14:
 				printf("USS-1001 (PCH-2000)");
+				break;
+			case 0x18:
+				printf("USS-1002 (PCH-2000)");
 				break;
 			default:
 				printf("Unknown MoBo 0x%02X", idps_buffer[0x07]);
@@ -193,8 +197,10 @@ int main(int argc, char *argv[])
 		switch(idps_buffer[0x07])
 		{
 			case 0x01:
-			case 0x02:
 				printf("DOL-1001 (VTE-1000)");
+				break;
+			case 0x02:
+				printf("DOL-1002 (VTE-1000)");
 				break;
 			default:
 				printf("Unknown MoBo 0x%02X", idps_buffer[0x07]);
