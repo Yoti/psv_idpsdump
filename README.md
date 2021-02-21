@@ -1,6 +1,9 @@
 # psv_idpsdump
 PSV IDPS Dumper (GPLv3) / based on VitaCID by Major_Tom
 
+v0.8 [PSP/PSV]
+- some new info from wiki by celesteblue
+
 v0.7 [PSP/PSV]
 - nice look
 - some new info from psvident by freakler
