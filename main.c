@@ -11,6 +11,7 @@
 #define VER_MINOR 8
 #define VER_BUILD ""
 
+#define VAL_LENGTH 0x10
 #define VAL_PUBLIC 0x0A
 #define VAL_PRIVATE 0x06
 
@@ -73,11 +74,12 @@ int main(int argc, char *argv[])
 	unsigned char idps_text_char_2nd[1];
 	char idps_text_buffer[32] = "";
 
-	sceKernelDelayThread(1000000);
-	sceCtrlReadBufferPositive(0, &pad, 1);
-	sceKernelDelayThread(1000000);
-	if (pad.buttons & SCE_CTRL_LTRIGGER)
-		paranoid = 1;
+	for (i = 0; i < 1000; i++) {
+		sceCtrlReadBufferPositive(0, &pad, 1);
+		if (pad.buttons & SCE_CTRL_LTRIGGER)
+			paranoid = 1;
+		sceKernelDelayThread(1000);
+	}
 
 	psvDebugScreenInit();
 	psvDebugScreenClear(0);
