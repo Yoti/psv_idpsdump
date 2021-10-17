@@ -8,7 +8,7 @@
 #include "graphics.h"
 
 #define VER_MAJOR 0
-#define VER_MINOR 8
+#define VER_MINOR 9
 #define VER_BUILD ""
 
 #define VAL_LENGTH 0x10
@@ -95,13 +95,13 @@ int main(int argc, char *argv[])
 	for (i=0; i<VAL_PUBLIC; i++)
 	{
 		if (i == 0x04)
-			psvDebugScreenSetFgColor(0xFF0000FF); // red
-		else if (i == 0x06)
-			psvDebugScreenSetFgColor(0xFF0000FF); // red
-		else if (i == 0x07)
-			psvDebugScreenSetFgColor(0xFF00FF00); // green
+			psvDebugScreenSetFgColor(0xFF0000FF); // red #1
 		else if (i == 0x05)
-			psvDebugScreenSetFgColor(0xFFFF0000); // blue
+			psvDebugScreenSetFgColor(0xFFFF0000); // blue #2
+		else if (i == 0x06)
+			psvDebugScreenSetFgColor(0xFF0000FF); // red #3
+		else if (i == 0x07)
+			psvDebugScreenSetFgColor(0xFF00FF00); // green #4
 		else
 			psvDebugScreenSetFgColor(0xFFFFFFFF); // white
 		printf("%02X", (u8)idps_buffer[i]);
@@ -135,6 +135,8 @@ int main(int argc, char *argv[])
 			printf("PlayStation Vita"); // fatWF/fat3G, slim
 		else if (idps_buffer[0x06] == 0x02)
 			printf("PlayStation/Vita TV"); // vtv, pstv
+		else if (idps_buffer[0x06] == 0x06)
+			printf("PlayStation/Vita TV"); // vtv, pstv	(testkit)
 		else
 			printf("Unknown Vita 0x%02X", idps_buffer[0x06]);
 	}
@@ -194,7 +196,7 @@ int main(int argc, char *argv[])
 				break;
 		}
 	}
-	else if (idps_buffer[0x06] == 0x02) // home system
+	else if ((idps_buffer[0x06] == 0x02) || (idps_buffer[0x06] == 0x06)) // home system
 	{
 		switch(idps_buffer[0x07])
 		{
@@ -218,6 +220,15 @@ int main(int argc, char *argv[])
 	psvDebugScreenSetFgColor(0xFFFF0000); // blue
 	switch(idps_buffer[0x05])
 	{
+		case 0x00:
+			printf("Proto");
+			break;
+		case 0x01:
+			printf("DevKit");
+			break;
+		case 0x02:
+			printf("TestKit");
+			break;
 		case 0x03:
 			printf("Japan");
 			break;
