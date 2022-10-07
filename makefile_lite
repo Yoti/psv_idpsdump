@@ -1,6 +1,6 @@
 TITLE_ID = YPID00001
-TITLE    = PSV IDPS Dumper v0.8
-TARGET   = PSV_IDPS_Dumper_v0.8
+TITLE    = PSV IDPS Dumper v0.9
+TARGET   = PSV_IDPS_Dumper_v0.9
 OBJS     = main.o graphics.o font.o
 
 LIBS = -lSceLibKernel_stub -lSceVshBridge_stub -lSceDisplay_stub -lSceCtrl_stub
