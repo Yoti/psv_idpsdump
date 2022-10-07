@@ -92,8 +92,7 @@ int main(int argc, char *argv[])
 	_vshSblAimgrGetConsoleId(idps_buffer);
 
 	printf(" Your IDPS is: ");
-	for (i=0; i<VAL_PUBLIC; i++)
-	{
+	for (i=0; i<VAL_PUBLIC; i++) {
 		if (i == 0x04)
 			psvDebugScreenSetFgColor(0xFF0000FF); // red #1
 		else if (i == 0x05)
@@ -106,19 +105,14 @@ int main(int argc, char *argv[])
 			psvDebugScreenSetFgColor(0xFFFFFFFF); // white
 		printf("%02X", (u8)idps_buffer[i]);
 	}
-	if (paranoid == 1)
-	{
-		for (i=0; i<VAL_PRIVATE; i++)
-		{
+	if (paranoid == 1) {
+		for (i=0; i<VAL_PRIVATE; i++) {
 			psvDebugScreenSetFgColor(0xFF777777); // gray
 			printf("XX");
 			psvDebugScreenSetFgColor(0xFFFFFFFF); // white
 		}
-	}
-	else
-	{
-		for (i=0; i<VAL_PRIVATE; i++)
-		{
+	} else {
+		for (i=0; i<VAL_PRIVATE; i++) {
 			psvDebugScreenSetFgColor(0xFFFFFFFF); // white
 			printf("%02X", (u8)idps_buffer[VAL_PUBLIC+i]);
 		}
