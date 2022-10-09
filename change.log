@@ -29,3 +29,6 @@ v0.7 [PSP/PSV]
 - some new info from psvident by freakler
 v0.8 [PSP/PSV]
 - some new info from wiki by celesteblue
+v0.9 [PSP/PSV]
+- psv proto/devkit/testkit detection
+- pstv testkit proper detection
