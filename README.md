@@ -1,6 +1,10 @@
 # psv_idpsdump
 PSV IDPS Dumper (GPLv3) / based on VitaCID by Major_Tom
 
+v0.9 [PSP/PSV]
+- psv proto/devkit/testkit detection
+- pstv testkit proper detection
+
 v0.8 [PSP/PSV]
 - some new info from wiki by celesteblue
 
