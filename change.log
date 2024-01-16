@@ -32,3 +32,6 @@ v0.8 [PSP/PSV]
 v0.9 [PSP/PSV]
 - psv proto/devkit/testkit detection
 - pstv testkit proper detection
+v1.0 [PSP/PSV]
+- psp qaf detection
+- regions also has their retail codes

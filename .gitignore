@@ -30,4 +30,11 @@
 
 # Debug files
 *.dSYM/
-*.su
+
+# Sony PlayStation Vita
+*.velf
+*.vpk
+
+# Archives
+*.7z
+*.zip

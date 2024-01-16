@@ -1,6 +1,10 @@
 # psv_idpsdump
 PSV IDPS Dumper (GPLv3) / based on VitaCID by Major_Tom
 
+v1.0 [PSP/PSV]
+- psp qaf detection
+- regions also has their retail codes
+
 v0.9 [PSP/PSV]
 - psv proto/devkit/testkit detection
 - pstv testkit proper detection
