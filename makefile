@@ -1,6 +1,6 @@
 TITLE_ID = YPID00001
-TITLE    = PSV IDPS Dumper v1.0
-TARGET   = PSV_IDPS_Dumper_v1.0
+TITLE    = PSV IDPS Dumper v1.1
+TARGET   = PSV_IDPS_Dumper_v1.1
 OBJS     = main.o graphics.o font.o
 
 LIBS = -lSceLibKernel_stub -lSceVshBridge_stub -lSceDisplay_stub -lSceCtrl_stub
@@ -13,7 +13,7 @@ ASFLAGS = $(CFLAGS)
 all: $(TARGET).vpk
 
 %.vpk: eboot.bin
-	vita-mksfoex -d PARENTAL_LEVEL=1 -s APP_VER=01.00 -s TITLE_ID=$(TITLE_ID) "$(TITLE)" param.sfo
+	vita-mksfoex -d PARENTAL_LEVEL=1 -s APP_VER=01.01 -s TITLE_ID=$(TITLE_ID) "$(TITLE)" param.sfo
 	vita-pack-vpk -s param.sfo -b eboot.bin \
 					--add change.log=sce_sys/manual/change.log \
 					--add thanks.txt=sce_sys/manual/thanks.txt \

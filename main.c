@@ -8,7 +8,7 @@
 #include "graphics.h"
 
 #define VER_MAJOR 1
-#define VER_MINOR 0
+#define VER_MINOR 1
 #define VER_BUILD ""
 
 #define VAL_LENGTH 0x10
@@ -156,9 +156,9 @@ int main(int argc, char *argv[]) {
 			case 0x06:
 				printf("TA-093 (PSP-3000)");
 				break;
-			//case 0x07:
-			//	printf("TA-094 (PSP-N1000)");
-			//	break;
+			case 0x07:
+				printf("TA-094(?) (PSP-N1000)");
+				break;
 			case 0x08:
 				printf("TA-095 (PSP-3000)");
 				break;
