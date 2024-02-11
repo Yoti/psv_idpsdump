@@ -157,7 +157,7 @@ int main(int argc, char *argv[]) {
 				printf("TA-093 (PSP-3000)");
 				break;
 			case 0x07:
-				printf("TA-094(?) (PSP-N1000)");
+				printf("TA-094 (PSP-N1000)");
 				break;
 			case 0x08:
 				printf("TA-095 (PSP-3000)");

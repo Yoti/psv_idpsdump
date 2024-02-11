@@ -1,6 +1,9 @@
 # psv_idpsdump
 PSV IDPS Dumper (GPLv3) / based on VitaCID by Major_Tom
 
+v1.1 [PSP/PSV]
+- psp go 06g ta-094 (strider2) detection
+
 v1.0 [PSP/PSV]
 - psp qaf detection
 - regions also has their retail codes
